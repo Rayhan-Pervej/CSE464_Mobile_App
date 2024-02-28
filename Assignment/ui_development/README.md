@@ -15,9 +15,9 @@ For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
-##Screenshot of the UI
+## Screenshot of the UI
 
-![Screenshot_1709144167](https://github.com/Rayhan-Pervej/CSE464_Mobile_App/assets/103215390/ca1ea653-2b0c-41b7-ad8f-3473be611bb5) <img src="[image_url_here](https://github.com/Rayhan-Pervej/CSE464_Mobile_App/assets/103215390/ca1ea653-2b0c-41b7-ad8f-3473be611bb5)" alt="image_description" width="300" height="200">
+![Screenshot_1709144167](https://github.com/Rayhan-Pervej/CSE464_Mobile_App/assets/103215390/ca1ea653-2b0c-41b7-ad8f-3473be611bb5) <img src="https://github.com/Rayhan-Pervej/CSE464_Mobile_App/assets/103215390/ca1ea653-2b0c-41b7-ad8f-3473be611bb5" width="200" />
 
 ![Screenshot_1709144156](https://github.com/Rayhan-Pervej/CSE464_Mobile_App/assets/103215390/b360e4f7-1283-4972-8917-4801cb279af2)
 ![Screenshot_1709144149](https://github.com/Rayhan-Pervej/CSE464_Mobile_App/assets/103215390/6be545e5-5bb5-406a-a009-fc40737c125d)
