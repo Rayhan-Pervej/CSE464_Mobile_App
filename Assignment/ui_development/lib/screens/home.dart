@@ -4,11 +4,13 @@ class Note {
   final String note;
   final DateTime date;
   final String description;
+  bool isChecked;
 
   Note({
     required this.note,
     required this.date,
     required this.description,
+    this.isChecked = false,
   });
 }
 
@@ -24,7 +26,6 @@ class _HomeState extends State<Home> {
   final _formKey = GlobalKey<FormState>();
   late String _note;
   late String _description = '';
-  bool isChecked = false;
 
   @override
   Widget build(BuildContext context) {
@@ -78,13 +79,19 @@ class _HomeState extends State<Home> {
                       Row(
                         children: [
                           TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                _editDialog(context, index);
+                              },
                               child: const Icon(
                                 Icons.edit,
                                 color: Colors.black,
                               )),
                           TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                setState(() {
+                                  listOfNotes.removeAt(index);
+                                });
+                              },
                               child: const Icon(
                                 Icons.delete,
                                 color: Colors.black,
@@ -94,10 +101,10 @@ class _HomeState extends State<Home> {
                               activeColor: Colors.black,
                               // fillColor: MaterialStateProperty.resolveWith(
                               //     (states) => Colors.blue),
-                              value: isChecked,
+                              value: listOfNotes[index].isChecked,
                               onChanged: (bool? value) {
                                 setState(() {
-                                  isChecked = value!;
+                                  listOfNotes[index].isChecked = value!;
                                 });
                               }),
                         ],
@@ -227,6 +234,102 @@ class _HomeState extends State<Home> {
                 }
               },
               child: const Text('Add'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Cancel'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _editDialog(BuildContext context, int index) {
+    DateTime selectedDate = listOfNotes[index].date;
+    _note = listOfNotes[index].note;
+    _description = listOfNotes[index].description;
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Edit Task'),
+          content: Form(
+            key: _formKey,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                TextFormField(
+                  initialValue: _note,
+                  textInputAction: TextInputAction.next,
+                  onChanged: (value) {
+                    _note = value;
+                  },
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter the Task';
+                    }
+                    return null;
+                  },
+                  decoration: const InputDecoration(labelText: 'Task'),
+                ),
+                const SizedBox(height: 10),
+                SizedBox(
+                  height: 100,
+                  child: TextFormField(
+                    initialValue: _description,
+                    textInputAction: TextInputAction.newline,
+                    maxLines: 20,
+                    onChanged: (value) {
+                      _description = value;
+                    },
+                    decoration: const InputDecoration(
+                      labelText: 'Description',
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 10),
+                StatefulBuilder(builder: (context, setState) {
+                  return TextButton(
+                    onPressed: () async {
+                      final DateTime? picked = await showDatePicker(
+                        context: context,
+                        initialDate: selectedDate,
+                        firstDate: DateTime(2000),
+                        lastDate: DateTime(2101),
+                      );
+                      if (picked != null && picked != selectedDate) {
+                        setState(() {
+                          selectedDate = picked;
+                        });
+                      }
+                    },
+                    child: Text(
+                      '${selectedDate.day}/${selectedDate.month}/${selectedDate.year}',
+                    ),
+                  );
+                }),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                if (_formKey.currentState!.validate()) {
+                  final editedNote = Note(
+                    note: _note,
+                    date: selectedDate,
+                    description: _description,
+                  );
+                  setState(() {
+                    listOfNotes[index] = editedNote;
+                  });
+                  Navigator.of(context).pop();
+                }
+              },
+              child: const Text('Update'),
             ),
             TextButton(
               onPressed: () {
