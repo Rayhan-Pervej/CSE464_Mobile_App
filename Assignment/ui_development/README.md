@@ -1,6 +1,6 @@
 # ui_development
 
-A new Flutter project.
+A new Flutter project name Plan IT. Where you can sort your working plan and stay focus on it.
 
 ## Getting Started
 
