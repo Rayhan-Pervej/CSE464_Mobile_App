@@ -23,7 +23,8 @@ class _HomeState extends State<Home> {
   final List<Note> listOfNotes = [];
   final _formKey = GlobalKey<FormState>();
   late String _note;
-  late String _description ='';
+  late String _description = '';
+  bool isChecked = false;
 
   @override
   Widget build(BuildContext context) {
@@ -63,13 +64,45 @@ class _HomeState extends State<Home> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Text(
-                    listOfNotes[index].note,
-                    style: const TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    textAlign: TextAlign.left,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        listOfNotes[index].note,
+                        style: const TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        textAlign: TextAlign.left,
+                      ),
+                      Row(
+                        children: [
+                          TextButton(
+                              onPressed: () {},
+                              child: const Icon(
+                                Icons.edit,
+                                color: Colors.black,
+                              )),
+                          TextButton(
+                              onPressed: () {},
+                              child: const Icon(
+                                Icons.delete,
+                                color: Colors.black,
+                              )),
+                          Checkbox(
+                              checkColor: Colors.white,
+                              activeColor: Colors.black,
+                              // fillColor: MaterialStateProperty.resolveWith(
+                              //     (states) => Colors.blue),
+                              value: isChecked,
+                              onChanged: (bool? value) {
+                                setState(() {
+                                  isChecked = value!;
+                                });
+                              }),
+                        ],
+                      )
+                    ],
                   ),
                   const SizedBox(
                     height: 5,
@@ -85,7 +118,7 @@ class _HomeState extends State<Home> {
                   Text(
                     '${listOfNotes[index].date.day}/${listOfNotes[index].date.month}/${listOfNotes[index].date.year}',
                     textAlign: TextAlign.right,
-                  )
+                  ),
                 ],
               ),
             ),
