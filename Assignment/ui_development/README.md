@@ -6,7 +6,7 @@ A new Flutter project name Plan IT. Where you can sort your working plan and sta
 
 This project is a starting point for a Flutter application.
 
-# Screenshot of the UI
+# Screenshot of the UI Development
 
   ## Simple
   <img src="https://github.com/Rayhan-Pervej/CSE464_Mobile_App/assets/103215390/889c09dd-4529-4a37-b2b2-5fa48e0c2658" width="200" />
