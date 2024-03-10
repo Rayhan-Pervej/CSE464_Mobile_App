@@ -19,7 +19,7 @@ This project is a starting point for a Flutter application.
   <img src="https://github.com/Rayhan-Pervej/CSE464_Mobile_App/assets/103215390/ad4b46ae-556c-4ac1-8877-1c4b4bfdaac0" width="200" />
   <img src="https://github.com/Rayhan-Pervej/CSE464_Mobile_App/assets/103215390/296c1820-b114-4b53-be63-d8124630e9b5" width="200" />
 
-  ## Edit Delete and Checked
+  ## Edit, Delete and Checked
   Now you can edit your task, delete and clicked on the check box when you complete the task. 
   Everything will be save on the storage.
 
