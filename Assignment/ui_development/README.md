@@ -24,4 +24,5 @@ This project is a starting point for a Flutter application.
   Everything will be save on the storage.
 
   <img src="https://github.com/Rayhan-Pervej/CSE464_Mobile_App/assets/103215390/ca1e2882-9016-4c74-97dc-c12552ab814b" width="200" />
-  <img src="https://github.com/Rayhan-Pervej/CSE464_Mobile_App/assets/103215390/de61a720-4004-4b0b-8d25-c92951af1e54" width="200" />
+  <img src="https://github.com/Rayhan-Pervej/CSE464_Mobile_App/assets/103215390/651ecf8a-47be-4020-985d-0e67d5f9f52a" width="200" />
+
