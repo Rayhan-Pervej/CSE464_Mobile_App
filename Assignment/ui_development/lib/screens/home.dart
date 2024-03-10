@@ -1,4 +1,6 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Note {
   final String note;
@@ -12,6 +14,24 @@ class Note {
     required this.description,
     this.isChecked = false,
   });
+
+  Map<String, dynamic> toJson() {
+    return {
+      'note': note,
+      'date': date.toIso8601String(),
+      'description': description,
+      'isChecked': isChecked,
+    };
+  }
+
+  factory Note.fromJson(Map<String, dynamic> json) {
+    return Note(
+      note: json['note'],
+      date: DateTime.parse(json['date']),
+      description: json['description'],
+      isChecked: json['isChecked'],
+    );
+  }
 }
 
 class Home extends StatefulWidget {
@@ -26,6 +46,12 @@ class _HomeState extends State<Home> {
   final _formKey = GlobalKey<FormState>();
   late String _note;
   late String _description = '';
+
+  @override
+  void initState() {
+    super.initState();
+    loadNotes();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -90,6 +116,7 @@ class _HomeState extends State<Home> {
                               onPressed: () {
                                 setState(() {
                                   listOfNotes.removeAt(index);
+                                  saveNotes();
                                 });
                               },
                               child: const Icon(
@@ -105,6 +132,7 @@ class _HomeState extends State<Home> {
                               onChanged: (bool? value) {
                                 setState(() {
                                   listOfNotes[index].isChecked = value!;
+                                  saveNotes();
                                 });
                               }),
                         ],
@@ -229,6 +257,7 @@ class _HomeState extends State<Home> {
                   );
                   setState(() {
                     listOfNotes.add(newNote);
+                    saveNotes();
                   });
                   Navigator.of(context).pop();
                 }
@@ -325,6 +354,7 @@ class _HomeState extends State<Home> {
                   );
                   setState(() {
                     listOfNotes[index] = editedNote;
+                    saveNotes();
                   });
                   Navigator.of(context).pop();
                 }
@@ -341,5 +371,24 @@ class _HomeState extends State<Home> {
         );
       },
     );
+  }
+
+  Future<void> loadNotes() async {
+    final prefs = await SharedPreferences.getInstance();
+    final notesJson = prefs.getStringList('notes');
+    if (notesJson != null) {
+      setState(() {
+        listOfNotes.addAll(
+          notesJson.map((json) => Note.fromJson(jsonDecode(json))),
+        );
+      });
+    }
+  }
+
+  Future<void> saveNotes() async {
+    final prefs = await SharedPreferences.getInstance();
+    final notesJson =
+        listOfNotes.map((note) => jsonEncode(note.toJson())).toList();
+    prefs.setStringList('notes', notesJson);
   }
 }
