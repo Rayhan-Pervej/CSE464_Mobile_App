@@ -17,6 +17,12 @@ This project is a starting point for a Flutter application.
   ## Form build
   <img src="https://github.com/Rayhan-Pervej/CSE464_Mobile_App/assets/103215390/424cf6cc-07b8-4a61-a403-15b3745e106c" width="200" />
   <img src="https://github.com/Rayhan-Pervej/CSE464_Mobile_App/assets/103215390/ad4b46ae-556c-4ac1-8877-1c4b4bfdaac0" width="200" />
-   <img src="https://github.com/Rayhan-Pervej/CSE464_Mobile_App/assets/103215390/296c1820-b114-4b53-be63-d8124630e9b5" width="200" />
-  
+  <img src="https://github.com/Rayhan-Pervej/CSE464_Mobile_App/assets/103215390/296c1820-b114-4b53-be63-d8124630e9b5" width="200" />
+
+  ## Edit, Delete and Checked
+  Now you can edit your task, delete and clicked on the check box when you complete the task. 
+  Everything will be save on the storage.
+
+  <img src="https://github.com/Rayhan-Pervej/CSE464_Mobile_App/assets/103215390/ca1e2882-9016-4c74-97dc-c12552ab814b" width="200" />
+  <img src="https://github.com/Rayhan-Pervej/CSE464_Mobile_App/assets/103215390/651ecf8a-47be-4020-985d-0e67d5f9f52a" width="200" />
 
